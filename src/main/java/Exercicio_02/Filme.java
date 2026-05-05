@@ -3,9 +3,9 @@ package Exercicio_02;
 import java.util.Objects;
 
 public class Filme {
-    int codigo, duracao, quantidadeEmEstoque;
-    String titulo, genero;
-    boolean disponivel = true;
+    private int codigo, duracao, quantidadeEmEstoque;
+    private String titulo, genero;
+    private boolean disponivel = true;
 
     public Filme(int codigo, String titulo, String genero, int quantidadeEmEstoque, int duracao){
         this.codigo = codigo;
@@ -92,7 +92,6 @@ public class Filme {
     public void setQuantidadeEmEstoque(int quantidadeEmEstoque) {
         this.quantidadeEmEstoque = quantidadeEmEstoque;
     }
-
 
     @Override
     public String toString() {
