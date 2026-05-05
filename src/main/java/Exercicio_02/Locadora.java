@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Locadora {
     private List<Filme> filmes;
+    private int contadorID = 0;
 
     public Locadora(){
         this.filmes = new ArrayList<>();
@@ -18,15 +19,27 @@ public class Locadora {
         this.filmes = filmes;
     }
 
-    public void adicionarFilme(){
-
+    public void adicionarFilme(String titulo, String genero, int quantidade, int duracao){
+        Filme filme = new Filme(titulo, genero, quantidade, duracao);
+        this.contadorID++;
+        filme.setCodigo(this.contadorID);
     }
 
-    public void removerFilme(){
-
+    public void removerFilme(int id){
+        for(Filme f : filmes){
+            if(f.getCodigo() == id){
+                filmes.remove(f);
+            }
+        }
     }
 
     public List<Filme> listarFilmesDisponíveis(){
-        return new ArrayList<>();
+        List<Filme> filmesDisponiveis = new ArrayList<>();
+        for(Filme f : filmes){
+            if(f.isDisponivel()){
+                filmesDisponiveis.add(f);
+            }
+        }
+        return filmesDisponiveis;
     }
 }

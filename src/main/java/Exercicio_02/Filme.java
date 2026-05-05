@@ -85,6 +85,10 @@ public class Filme {
         this.disponivel = disponivel;
     }
 
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
     public void setDuracao(int duracao) {
         this.duracao = duracao;
     }
