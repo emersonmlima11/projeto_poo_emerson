@@ -42,4 +42,20 @@ public class Locadora {
         }
         return filmesDisponiveis;
     }
+
+    public void alugarFilme(int id){
+        for(Filme f : filmes){
+            if(f.getCodigo() == id){
+                f.alugar();
+            }
+        }
+    }
+
+    public void devolverFilme(int id){
+        for(Filme f : filmes){
+            if(f.getCodigo() == id){
+                f.devolver();
+            }
+        }
+    }
 }

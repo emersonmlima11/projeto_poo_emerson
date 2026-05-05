@@ -97,6 +97,14 @@ public class Filme {
         this.quantidadeEmEstoque = quantidadeEmEstoque;
     }
 
+    public void alugar(){
+        this.quantidadeEmEstoque -= 1;
+    }
+
+    public void devolver(){
+        this.quantidadeEmEstoque++;
+    }
+
     @Override
     public String toString() {
         return "Título: "+this.titulo
