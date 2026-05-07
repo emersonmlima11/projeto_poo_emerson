@@ -25,12 +25,15 @@ public class Locadora {
         filme.setCodigo(this.contadorID);
     }
 
-    public void removerFilme(int id){
+    public void removerFilme(int id) throws FilmeNaoEncontradoException{
         for(Filme f : filmes){
             if(f.getCodigo() == id){
                 filmes.remove(f);
+                return;
             }
         }
+
+        throw new FilmeNaoEncontradoException("Nenhum filme foi encontrado");
     }
 
     public List<Filme> listarFilmesDisponíveis(){
@@ -43,7 +46,7 @@ public class Locadora {
         return filmesDisponiveis;
     }
 
-    public void alugarFilme(int id){
+    public void alugarFilme(int id) throws FilmeNaoEncontradoException{
         for(Filme f : filmes){
             if(f.getCodigo() == id){
                 try {
@@ -51,15 +54,22 @@ public class Locadora {
                 }catch (FilmeIndisponivelException e){
                     System.out.println("Erro ao alugar: " + e.getMessage());
                 }
+                return;
             }
         }
+
+        throw new FilmeNaoEncontradoException("Nenhum Filme foi encontrado");
     }
 
-    public void devolverFilme(int id){
+    public void devolverFilme(int id) throws FilmeNaoEncontradoException{
         for(Filme f : filmes){
             if(f.getCodigo() == id){
                 f.devolver();
+                return;
             }
         }
+
+        throw new FilmeNaoEncontradoException("Nenhum Filme foi encontrado");
+
     }
 }
