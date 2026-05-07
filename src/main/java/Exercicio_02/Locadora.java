@@ -46,7 +46,11 @@ public class Locadora {
     public void alugarFilme(int id){
         for(Filme f : filmes){
             if(f.getCodigo() == id){
-                f.alugar();
+                try {
+                    f.alugar();
+                }catch (FilmeIndisponivelException e){
+                    System.out.println("Erro ao alugar: " + e.getMessage());
+                }
             }
         }
     }

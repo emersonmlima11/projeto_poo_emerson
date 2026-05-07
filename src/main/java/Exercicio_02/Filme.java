@@ -97,7 +97,11 @@ public class Filme {
         this.quantidadeEmEstoque = quantidadeEmEstoque;
     }
 
-    public void alugar(){
+    public void alugar() throws FilmeIndisponivelException{
+        if(this.quantidadeEmEstoque == 0){
+            throw new FilmeIndisponivelException("Não há cópias disponíveis do Filme");
+        }
+
         this.quantidadeEmEstoque -= 1;
     }
 
