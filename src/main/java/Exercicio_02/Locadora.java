@@ -3,7 +3,7 @@ package Exercicio_02;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Locadora {
+public class Locadora implements Gerenciador{
     private List<Filme> filmes;
     private int contadorID = 0;
 
@@ -19,12 +19,15 @@ public class Locadora {
         this.filmes = filmes;
     }
 
+    @Override
     public void adicionarFilme(String titulo, String genero, int quantidade, int duracao){
         Filme filme = new Filme(titulo, genero, quantidade, duracao);
         this.contadorID++;
         filme.setCodigo(this.contadorID);
+        filmes.add(filme);
     }
 
+    @Override
     public void removerFilme(int id) throws FilmeNaoEncontradoException{
         for(Filme f : filmes){
             if(f.getCodigo() == id){
@@ -36,7 +39,8 @@ public class Locadora {
         throw new FilmeNaoEncontradoException("Nenhum filme foi encontrado");
     }
 
-    public List<Filme> listarFilmesDisponíveis(){
+    @Override
+    public List<Filme> listarFilmesDisponiveis(){
         List<Filme> filmesDisponiveis = new ArrayList<>();
         for(Filme f : filmes){
             if(f.isDisponivel()){
@@ -46,6 +50,7 @@ public class Locadora {
         return filmesDisponiveis;
     }
 
+    @Override
     public void alugarFilme(int id) throws FilmeNaoEncontradoException{
         for(Filme f : filmes){
             if(f.getCodigo() == id){
@@ -61,6 +66,7 @@ public class Locadora {
         throw new FilmeNaoEncontradoException("Nenhum Filme foi encontrado");
     }
 
+    @Override
     public void devolverFilme(int id) throws FilmeNaoEncontradoException{
         for(Filme f : filmes){
             if(f.getCodigo() == id){
