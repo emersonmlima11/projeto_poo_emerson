@@ -1,0 +1,68 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Filme{
+    - codigo : int
+    - duracao : int
+    - quantidadeEmEstoque : int
+    - titulo : String
+    - genero : String
+    - disponivel : boolean
+    + Filme(codigo:int, titulo:String, genero:String, quantidadeEmEstoque:int, duracao:int)
+    + Filme(codigo:int, titulo:String, genero:String, duracao:int)
+    + Filme(titulo:String, genero:String, quantidadeEmEstoque:int, duracao:int)
+    + Filme(titulo:String, genero:String, duracao:int)
+    + equals(Object o) : boolean
+    + hashCode() : int
+    + getTitulo() : String
+    + getCodigo() : int
+    + getGenero() : String
+    + getDuracao() : int
+    + getQuantidadeEmEstoque() : int
+    + setCodigo(codigo : int) : void
+    + setTitulo(titulo : String) : void
+    + setGenero(genero : String) : void
+    + setDisponivel(boolean disponivel) : void
+    + isDisponivel() : boolean
+    + setDuracao(duracao : int) : void
+    + setQuantidadeEmEstoque(quantidadeEmEstoque : int) : void
+    + alugar() : void
+    + devolver() : void
+    + toString() : String
+}
+
+class Locadora{
+    - filmes : List<Filme>
+    - contadorID : int
+    + Locadora()
+    + getFilmes() : List<Filme>
+    + setFilmes(filmes : List<Filme>) : void
+    + adicionarFilme(titulo : String, genero : String, quantidade : int, duracao : int)
+    + removerFilme(id : int) : void
+    + listarFilmesDisponiveis() : List<Filme>
+    + alugarFilme(id : int) : void
+    + devolverFilme(id : int) : void
+}
+
+interface Gerenciador{
+    + adicionarFilme(titulo : String, genero : String, quantidade : int, duracao : int) : void
+    + removerFilme(id : int) : void
+    + listarFilmesDisponiveis() : List<Filme>
+    + alugarFilme(id : int) : void
+    + devolverFilme(id : int) : void
+}
+
+class ProgramaPrincipal{
+    + static main(args : String[]) : void
+}
+
+class FilmeIndisponivelException << (E,yellow) >>
+class FilmeNaoEncontradoException << (E,yellow) >>
+
+Locadora ..> Filme
+Gerenciador <|.. Locadora
+ProgramaPrincipal ..> Locadora
+Filme ..> FilmeIndisponivelException : <<throws>>
+Locadora ..> FilmeNaoEncontradoException : <<throws>>
+
+@enduml
