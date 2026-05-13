@@ -1,4 +1,4 @@
-package Exercicio_02;
+package Exercicio_02_Locadora;
 
 import java.util.ArrayList;
 import java.util.List;
