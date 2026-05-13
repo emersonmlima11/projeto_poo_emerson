@@ -32,21 +32,39 @@ public class SistemaAmigo {
     }
 
     public List<Mensagem> pesquisarrMensagensAnonimas(){
-        return null;
-        //TODO
+        List<Mensagem> mensagensAnonimas = new ArrayList<>();
+        for(Mensagem m : mensagens){
+            if(m.ehAnonima()){
+                mensagensAnonimas.add(m);
+            }
+        }
+        return mensagensAnonimas;
     }
 
     public List<Mensagem> pesquisarTodasAsMensagens(){
-        return null;
-        //TODO
+        return this.mensagens;
     }
 
-    public void configurarAmigoSecretoDe(String emailDaPessoa, String emailAmigoSorteado){
-        //TODO
+    public void configurarAmigoSecretoDe(String emailDaPessoa, String emailAmigoSorteado) throws AmigoInexistenteException{
+        for(Amigo a : amigos){
+            if(a.getEmail().equals(emailDaPessoa)){
+                a.setEmailAmigoSecreto(emailAmigoSorteado);
+                return;
+            }
+        }
+
+        throw new AmigoInexistenteException("O amigo não existe");
     }
 
-    public String peesquisarAmiigoSecretoDe(String emailDaPessoa){
-        return "";
-        //TODO
+    public String pesquisarAmiigoSecretoDe(String emailDaPessoa) throws AmigoInexistenteException, AmigoNaoSorteadoException{
+        for(Amigo m: amigos){
+            if(m.getEmail().equals(emailDaPessoa)){
+                if (m.getEmailAmigoSecreto() == null){
+                    throw new AmigoNaoSorteadoException("O amigo ainda não foi sorteado");
+                }
+                return m.getEmailAmigoSecreto();
+            }
+        }
+        throw new AmigoInexistenteException("O amigo não existe");
     }
 }
