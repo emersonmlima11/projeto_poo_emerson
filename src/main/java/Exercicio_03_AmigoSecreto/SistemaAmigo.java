@@ -12,23 +12,29 @@ public class SistemaAmigo {
         this.amigos = new ArrayList<>();
     }
 
-    public void cadastraAmigo(String nomeAmigo, String emailAmigo){
-        //TODO
+    public void cadastraAmigo(String emailDaPessoa, String emailAmigo){
+        Amigo amigo = new Amigo(emailDaPessoa, emailAmigo);
+        amigos.add(amigo);
     }
 
-    public Amigo pesquisaAmigo(String emailAmigo){
-        return new Amigo("", "");
-        //TODO
+    public Amigo pesquisaAmigo(String emailAmigo) throws AmigoInexistenteException{
+        for(Amigo a : amigos){
+            if(a.getEmail().equals(emailAmigo)){
+                return a;
+            }
+        }
+
+        throw new AmigoInexistenteException("Amigo não encontrado");
     }
 
     public void enviarMensagemParaTodos(String texto, String emailRemetente, boolean ehAnonima){
-        //TODO
+        Mensagem mpt = new MensagemParaTodos(texto, emailRemetente, ehAnonima);
+        this.mensagens.add(mpt);
     }
 
-    public void enviarMensagemParaAlguem(String texto, String emailRmetente, String emailDestinatario,
-                                         boolean ehAnonima){
-        //TODO
-
+    public void enviarMensagemParaAlguem(String texto, String emailRemetente, String emailDestinatario, boolean ehAnonima){
+        Mensagem mpa = new MensagemParaAlguem(texto, emailRemetente, emailDestinatario, ehAnonima);
+        this.mensagens.add(mpa);
     }
 
     public List<Mensagem> pesquisarrMensagensAnonimas(){

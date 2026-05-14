@@ -18,6 +18,6 @@ public class MensagemParaAlguem extends Mensagem{
 
     @Override
     public String getTextoCompletoAExibir() {
-        return "Texto para alguem";
+        return "Mensagem de "+this.getEmailRemetente() +" para "+this.emailDestinatario+" : "+this.getTexto();
     }
 }
