@@ -1,4 +1,4 @@
-package Exercicio_03_AmigoSecreto;
+package Exercicio_03_AmigoSecreto.Exceptions;
 
 public class AmigoNaoSorteadoException extends Exception{
     public AmigoNaoSorteadoException(String message) {

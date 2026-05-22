@@ -1,4 +1,13 @@
-package Exercicio_03_AmigoSecreto;
+package Exercicio_03_AmigoSecreto.Sistemas;
+
+import Exercicio_03_AmigoSecreto.Exceptions.AmigoInexistenteException;
+import Exercicio_03_AmigoSecreto.Exceptions.AmigoJaExisteException;
+import Exercicio_03_AmigoSecreto.Exceptions.AmigoNaoSorteadoException;
+import Exercicio_03_AmigoSecreto.Exceptions.NaoPossuiAmigoParaSortearException;
+import Exercicio_03_AmigoSecreto.Modelos.Amigo;
+import Exercicio_03_AmigoSecreto.Modelos.Mensagem;
+import Exercicio_03_AmigoSecreto.Modelos.MensagemParaAlguem;
+import Exercicio_03_AmigoSecreto.Modelos.MensagemParaTodos;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,7 +30,7 @@ public class SistemaAmigo {
         return mensagens;
     }
 
-    public void cadastraAmigo(String nome, String emailAmigo) throws AmigoJaExisteException{
+    public void cadastraAmigo(String nome, String emailAmigo) throws AmigoJaExisteException {
         Amigo amigo = new Amigo(nome, emailAmigo);
         if(amigos.contains(amigo)){
            throw new AmigoJaExisteException("Amigo já cadastrado");
@@ -29,7 +38,7 @@ public class SistemaAmigo {
         amigos.add(amigo);
     }
 
-    public Amigo pesquisaAmigo(String emailAmigo) throws AmigoInexistenteException{
+    public Amigo pesquisaAmigo(String emailAmigo) throws AmigoInexistenteException {
         for(Amigo a : amigos){
             if(a.getEmail().equals(emailAmigo)){
                 return a;
@@ -74,7 +83,7 @@ public class SistemaAmigo {
         throw new AmigoInexistenteException("O amigo não existe");
     }
 
-    public String pesquisaAmigoSecretoDe(String emailDaPessoa) throws AmigoInexistenteException, AmigoNaoSorteadoException{
+    public String pesquisaAmigoSecretoDe(String emailDaPessoa) throws AmigoInexistenteException, AmigoNaoSorteadoException {
         for(Amigo m: amigos){
             if(m.getEmail().equals(emailDaPessoa)){
                 if (m.getEmailAmigoSecreto() == null){

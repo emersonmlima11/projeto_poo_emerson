@@ -1,9 +1,9 @@
-package Exercicio_03_AmigoSecreto;
+package Exercicio_03_AmigoSecreto.Modelos;
 
-public class MensagemParaAlguem extends Mensagem{
+public class MensagemParaAlguem extends Mensagem {
     private String emailDestinatario;
 
-    MensagemParaAlguem(String texto,String emailRemetente, String emailDestinatario, boolean anonima){
+    public MensagemParaAlguem(String texto,String emailRemetente, String emailDestinatario, boolean anonima){
         super(texto, emailRemetente, anonima);
         this.emailDestinatario = emailDestinatario;
     }

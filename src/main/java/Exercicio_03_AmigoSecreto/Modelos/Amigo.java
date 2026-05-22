@@ -1,4 +1,4 @@
-package Exercicio_03_AmigoSecreto;
+package Exercicio_03_AmigoSecreto.Modelos;
 
 public class Amigo {
     private String nome,email,emailAmigoSecreto;

@@ -1,8 +1,8 @@
-package Exercicio_03_AmigoSecreto;
+package Exercicio_03_AmigoSecreto.Modelos;
 
-public class MensagemParaTodos extends Mensagem{
+public class MensagemParaTodos extends Mensagem {
 
-    MensagemParaTodos(String texto, String emailRemetente, boolean anonima){
+    public MensagemParaTodos(String texto, String emailRemetente, boolean anonima){
         super(texto, emailRemetente, anonima);
     }
 

@@ -7,6 +7,13 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.List;
 
+import Exercicio_03_AmigoSecreto.Exceptions.AmigoInexistenteException;
+import Exercicio_03_AmigoSecreto.Exceptions.AmigoJaExisteException;
+import Exercicio_03_AmigoSecreto.Exceptions.AmigoNaoSorteadoException;
+import Exercicio_03_AmigoSecreto.Modelos.Amigo;
+import Exercicio_03_AmigoSecreto.Modelos.Mensagem;
+import Exercicio_03_AmigoSecreto.Modelos.MensagemParaAlguem;
+import Exercicio_03_AmigoSecreto.Sistemas.SistemaAmigo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

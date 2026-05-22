@@ -1,4 +1,9 @@
-package Exercicio_03_AmigoSecreto;
+package Exercicio_03_AmigoSecreto.Testes_Gerais;
+
+import Exercicio_03_AmigoSecreto.Exceptions.AmigoInexistenteException;
+import Exercicio_03_AmigoSecreto.Modelos.Amigo;
+import Exercicio_03_AmigoSecreto.Modelos.Mensagem;
+import Exercicio_03_AmigoSecreto.Sistemas.SistemaAmigo;
 
 import java.util.List;
 

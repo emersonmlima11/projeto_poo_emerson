@@ -1,4 +1,4 @@
-package Exercicio_03_AmigoSecreto;
+package Exercicio_03_AmigoSecreto.Modelos;
 
 public abstract class Mensagem {
     private String texto,emailRemetente;
