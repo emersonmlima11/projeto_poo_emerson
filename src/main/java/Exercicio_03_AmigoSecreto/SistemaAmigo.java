@@ -1,6 +1,7 @@
 package Exercicio_03_AmigoSecreto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class SistemaAmigo {
@@ -12,8 +13,19 @@ public class SistemaAmigo {
         this.amigos = new ArrayList<>();
     }
 
-    public void cadastraAmigo(String emailDaPessoa, String emailAmigo){
-        Amigo amigo = new Amigo(emailDaPessoa, emailAmigo);
+    public List<Amigo> getAmigos() {
+        return amigos;
+    }
+
+    public List<Mensagem> getMensagens() {
+        return mensagens;
+    }
+
+    public void cadastraAmigo(String nome, String emailAmigo) throws AmigoJaExisteException{
+        Amigo amigo = new Amigo(nome, emailAmigo);
+        if(amigos.contains(amigo)){
+           throw new AmigoJaExisteException("Amigo já cadastrado");
+        }
         amigos.add(amigo);
     }
 
@@ -37,7 +49,7 @@ public class SistemaAmigo {
         this.mensagens.add(mpa);
     }
 
-    public List<Mensagem> pesquisarrMensagensAnonimas(){
+    public List<Mensagem> pesquisaMensagensAnonimas(){
         List<Mensagem> mensagensAnonimas = new ArrayList<>();
         for(Mensagem m : mensagens){
             if(m.ehAnonima()){
@@ -47,11 +59,11 @@ public class SistemaAmigo {
         return mensagensAnonimas;
     }
 
-    public List<Mensagem> pesquisarTodasAsMensagens(){
+    public List<Mensagem> pesquisaTodasAsMensagens(){
         return this.mensagens;
     }
 
-    public void configurarAmigoSecretoDe(String emailDaPessoa, String emailAmigoSorteado) throws AmigoInexistenteException{
+    public void configuraAmigoSecretoDe(String emailDaPessoa, String emailAmigoSorteado) throws AmigoInexistenteException{
         for(Amigo a : amigos){
             if(a.getEmail().equals(emailDaPessoa)){
                 a.setEmailAmigoSecreto(emailAmigoSorteado);
@@ -62,15 +74,31 @@ public class SistemaAmigo {
         throw new AmigoInexistenteException("O amigo não existe");
     }
 
-    public String pesquisarAmiigoSecretoDe(String emailDaPessoa) throws AmigoInexistenteException, AmigoNaoSorteadoException{
+    public String pesquisaAmigoSecretoDe(String emailDaPessoa) throws AmigoInexistenteException, AmigoNaoSorteadoException{
         for(Amigo m: amigos){
             if(m.getEmail().equals(emailDaPessoa)){
                 if (m.getEmailAmigoSecreto() == null){
                     throw new AmigoNaoSorteadoException("O amigo ainda não foi sorteado");
                 }
-                return m.getEmailAmigoSecreto();
+                return pesquisaAmigo(m.getEmailAmigoSecreto()).getEmail();
             }
         }
         throw new AmigoInexistenteException("O amigo não existe");
+    }
+
+    public void sortear() throws NaoPossuiAmigoParaSortearException, AmigoInexistenteException {
+        if(this.amigos.size() < 2){
+            throw new NaoPossuiAmigoParaSortearException("Não possui amigos suficientes para sortear");
+        }
+
+        List<Amigo> listaEmbaralhada = new ArrayList<>(this.amigos);
+        Collections.shuffle(listaEmbaralhada);
+
+        for(int i=0; i < listaEmbaralhada.size();i++){
+            Amigo participante = listaEmbaralhada.get(i);
+            int indiceAmigoSecreto = (i + 1) % listaEmbaralhada.size();
+            Amigo amigoSecreto = listaEmbaralhada.get(indiceAmigoSecreto);
+            configuraAmigoSecretoDe(participante.getEmail(), amigoSecreto.getEmail());
+        }
     }
 }

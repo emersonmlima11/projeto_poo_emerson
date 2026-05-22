@@ -1,0 +1,63 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class Persistencia{}
+class PersistenciaDePedidos{}
+class PersistenciaDeProdutos{}
+class PersistenciaDeTipos{}
+class PersistenciaDeUsuarios{}
+'class ErroAoLerArquivoException <<(E, Yellow)>>
+'class ErroAoSalvarArquivoException <<(E, Yellow)>>
+
+Persistencia <|-- PersistenciaDePedidos
+Persistencia <|-- PersistenciaDeProdutos
+Persistencia <|-- PersistenciaDeTipos
+Persistencia <|-- PersistenciaDeUsuarios
+'Persistencia ..> ErroAoLerArquivoException : <<Throws>>
+'Persistencia ..> ErroAoSalvarArquivoException : <<Throws>>
+
+interface Gerenciador{}
+class GerenciadorDePedido{}
+class GerenciadorDeProduto{}
+
+Gerenciador <|.. GerenciadorDePedido
+Gerenciador <|.. GerenciadorDeProduto
+
+class Main{}
+class InterfaceUsuario{}
+Main ..> InterfaceUsuario
+
+abstract class User
+class Cliente
+class Admin
+class Endereco
+class Pedido
+class Produto
+class TipoProduto
+
+User <|-- Admin
+User <|-- Cliente
+
+class RepositorioDeTipos
+class RepositorioDeUsuario
+
+RepositorioDeUsuario ..> User : Armazena
+RepositorioDeUsuario ..> PersistenciaDeUsuarios : Usa
+RepositorioDeTipos ..> TipoProduto : Armazena
+RepositorioDeTipos ..> PersistenciaDeTipos : Usa
+Produto ..> TipoProduto : Contém
+Pedido ..> Cliente : Contém
+Pedido ..> Produto : Contém
+User ..> Endereco : Contém
+GerenciadorDeProduto ..> Produto : Armazena
+GerenciadorDeProduto ..> PersistenciaDeProdutos : Usa
+GerenciadorDePedido ..> Pedido : Armazena
+GerenciadorDePedido ..> PersistenciaDePedidos : Usa
+Main ..> RepositorioDeUsuario
+Main ..> RepositorioDeTipos
+Main ..> GerenciadorDeProduto
+Main ..> GerenciadorDePedido
+
+
+
+@enduml

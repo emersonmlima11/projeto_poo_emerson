@@ -9,13 +9,13 @@ public class TestaSistemaAmigo {
         sistemaAmigo.cadastraAmigo("Maria", "maria@amigo.secreto");
 
         try{
-            sistemaAmigo.configurarAmigoSecretoDe("jose@amigo.secreto", "maria@amigo.secreto");
+            sistemaAmigo.configuraAmigoSecretoDe("jose@amigo.secreto", "maria@amigo.secreto");
         } catch (AmigoInexistenteException e) {
             System.out.println("ERRO: "+e.getMessage());
         }
 
         try {
-            sistemaAmigo.configurarAmigoSecretoDe("maria@amigo.secreto", "jose@amigo.secreto");
+            sistemaAmigo.configuraAmigoSecretoDe("maria@amigo.secreto", "jose@amigo.secreto");
         } catch (AmigoInexistenteException e) {
             System.out.println("ERRO: "+e.getMessage());
         }
@@ -23,7 +23,7 @@ public class TestaSistemaAmigo {
         sistemaAmigo.enviarMensagemParaAlguem("Olá José", "maria@amigo.secreto", "jose@amigo.secreto", true);
         sistemaAmigo.enviarMensagemParaTodos("Olá todo mundo", "maria@amigo.secreto", true);
 
-        List<Mensagem> mensagensAnonimas = sistemaAmigo.pesquisarrMensagensAnonimas();
+        List<Mensagem> mensagensAnonimas = sistemaAmigo.pesquisaMensagensAnonimas();
         for (Mensagem m : mensagensAnonimas){
             System.out.println(m.getTextoCompletoAExibir());
         }
