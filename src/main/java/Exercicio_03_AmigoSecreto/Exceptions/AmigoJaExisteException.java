@@ -1,6 +1,6 @@
 package Exercicio_03_AmigoSecreto.Exceptions;
 
-public class AmigoJaExisteException extends RuntimeException {
+public class AmigoJaExisteException extends Exception {
     public AmigoJaExisteException(String message) {
         super(message);
     }

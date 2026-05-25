@@ -1,6 +1,7 @@
 package Exercicio_03_AmigoSecreto.Testes_Gerais;
 
 import Exercicio_03_AmigoSecreto.Exceptions.AmigoInexistenteException;
+import Exercicio_03_AmigoSecreto.Exceptions.AmigoJaExisteException;
 import Exercicio_03_AmigoSecreto.Modelos.Amigo;
 import Exercicio_03_AmigoSecreto.Modelos.Mensagem;
 import Exercicio_03_AmigoSecreto.Sistemas.SistemaAmigo;
@@ -10,9 +11,12 @@ import java.util.List;
 public class TestaSistemaAmigo {
     public static void main(String[] args){
         SistemaAmigo sistemaAmigo = new SistemaAmigo();
-        sistemaAmigo.cadastraAmigo("José", "jose@amigo.secreto");
-        sistemaAmigo.cadastraAmigo("Maria", "maria@amigo.secreto");
-
+        try {
+            sistemaAmigo.cadastraAmigo("José", "jose@amigo.secreto");
+            sistemaAmigo.cadastraAmigo("Maria", "maria@amigo.secreto");
+        } catch (AmigoJaExisteException e) {
+            System.out.println("Erro"+e.getMessage());
+        }
         try{
             sistemaAmigo.configuraAmigoSecretoDe("jose@amigo.secreto", "maria@amigo.secreto");
         } catch (AmigoInexistenteException e) {
