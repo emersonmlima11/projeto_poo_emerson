@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class SistemaAmigo implements Sistema{
+public class SistemaAmigo {
     private List<Mensagem> mensagens;
     private List<Amigo> amigos;
 
@@ -30,7 +30,6 @@ public class SistemaAmigo implements Sistema{
         return mensagens;
     }
 
-    @Override
     public void cadastraAmigo(String nome, String emailAmigo) throws AmigoJaExisteException {
         Amigo amigo = new Amigo(nome, emailAmigo);
         if(amigos.contains(amigo)){
@@ -39,7 +38,6 @@ public class SistemaAmigo implements Sistema{
         amigos.add(amigo);
     }
 
-    @Override
     public Amigo pesquisaAmigo(String emailAmigo) throws AmigoInexistenteException {
         for(Amigo a : amigos){
             if(a.getEmail().equals(emailAmigo)){
@@ -50,19 +48,16 @@ public class SistemaAmigo implements Sistema{
         throw new AmigoInexistenteException("Amigo não encontrado");
     }
 
-    @Override
     public void enviarMensagemParaTodos(String texto, String emailRemetente, boolean ehAnonima){
         Mensagem mpt = new MensagemParaTodos(texto, emailRemetente, ehAnonima);
         this.mensagens.add(mpt);
     }
 
-    @Override
     public void enviarMensagemParaAlguem(String texto, String emailRemetente, String emailDestinatario, boolean ehAnonima){
         Mensagem mpa = new MensagemParaAlguem(texto, emailRemetente, emailDestinatario, ehAnonima);
         this.mensagens.add(mpa);
     }
 
-    @Override
     public List<Mensagem> pesquisaMensagensAnonimas(){
         List<Mensagem> mensagensAnonimas = new ArrayList<>();
         for(Mensagem m : mensagens){
@@ -73,12 +68,10 @@ public class SistemaAmigo implements Sistema{
         return mensagensAnonimas;
     }
 
-    @Override
     public List<Mensagem> pesquisaTodasAsMensagens(){
         return this.mensagens;
     }
 
-    @Override
     public void configuraAmigoSecretoDe(String emailDaPessoa, String emailAmigoSorteado) throws AmigoInexistenteException{
         for(Amigo a : amigos){
             if(a.getEmail().equals(emailDaPessoa)){
@@ -90,7 +83,6 @@ public class SistemaAmigo implements Sistema{
         throw new AmigoInexistenteException("O amigo não existe");
     }
 
-    @Override
     public String pesquisaAmigoSecretoDe(String emailDaPessoa) throws AmigoInexistenteException, AmigoNaoSorteadoException {
         for(Amigo m: amigos){
             if(m.getEmail().equals(emailDaPessoa)){
@@ -103,7 +95,6 @@ public class SistemaAmigo implements Sistema{
         throw new AmigoInexistenteException("O amigo não existe");
     }
 
-    @Override
     public void sortear() throws NaoPossuiAmigoParaSortearException, AmigoInexistenteException {
         if(this.amigos.size() < 2){
             throw new NaoPossuiAmigoParaSortearException("Não possui amigos suficientes para sortear");

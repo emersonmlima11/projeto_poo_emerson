@@ -1,7 +1,6 @@
 package Exercicio_03_AmigoSecreto.Testes_Gerais;
 
 import Exercicio_03_AmigoSecreto.Exceptions.AmigoInexistenteException;
-import Exercicio_03_AmigoSecreto.Exceptions.AmigoJaExisteException;
 import Exercicio_03_AmigoSecreto.Exceptions.AmigoNaoSorteadoException;
 import Exercicio_03_AmigoSecreto.Exceptions.NaoPossuiAmigoParaSortearException;
 import Exercicio_03_AmigoSecreto.Modelos.Amigo;
@@ -23,11 +22,7 @@ public class TestaSistemaAmigoGUI {
             String nome = input.nextLine();
             System.out.println("Email: ");
             String email = input.nextLine();
-            try {
-                sistema.cadastraAmigo(nome, email);
-            } catch (AmigoJaExisteException e) {
-                System.out.println("Erro: "+e.getMessage());
-            }
+            sistema.cadastraAmigo(nome, email);
         }
 
         try{
