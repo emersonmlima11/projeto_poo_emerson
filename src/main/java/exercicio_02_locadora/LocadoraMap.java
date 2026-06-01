@@ -10,7 +10,11 @@ public class LocadoraMap implements Gerenciador{
     private int contadorID = 0;
 
     public LocadoraMap(){
-        this.filmes = new HashMap<>();
+        this.filmes = Persistencia.ler();
+    }
+
+    public Map<Integer, Filme> getFilmes() {
+        return filmes;
     }
 
     @Override
@@ -19,6 +23,7 @@ public class LocadoraMap implements Gerenciador{
         this.contadorID++;
         filme.setCodigo(this.contadorID);
         filmes.put(filme.getCodigo(), filme);
+        Persistencia.gravar(this.filmes);
     }
 
     @Override
@@ -28,6 +33,7 @@ public class LocadoraMap implements Gerenciador{
         }
 
         filmes.remove(id);
+        Persistencia.gravar(this.filmes);
     }
 
     @Override
@@ -48,6 +54,8 @@ public class LocadoraMap implements Gerenciador{
         } catch (FilmeIndisponivelException e) {
             System.out.println("Erro: "+e.getMessage());
         }
+
+        Persistencia.gravar(this.filmes);
     }
 
     @Override
@@ -56,5 +64,9 @@ public class LocadoraMap implements Gerenciador{
             throw new FilmeNaoEncontradoException("Nenhum Filme foi encontrado");
         }
         filmes.get(id).devolver();
+
+        Persistencia.gravar(this.filmes);
     }
+
+
 }

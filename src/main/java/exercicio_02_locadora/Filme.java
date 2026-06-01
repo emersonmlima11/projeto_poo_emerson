@@ -1,8 +1,9 @@
 package exercicio_02_locadora;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Filme {
+public class Filme implements Serializable {
     private int codigo, duracao, quantidadeEmEstoque;
     private String titulo, genero;
     private boolean disponivel = true;
